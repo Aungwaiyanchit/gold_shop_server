@@ -5,8 +5,15 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1768979091236,
-      "tag": "0000_great_speed",
+      "when": 1769001694503,
+      "tag": "0000_add-auth-tables",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1769001737270,
+      "tag": "0001_add-branch-table",
       "breakpoints": true
     }
   ]
