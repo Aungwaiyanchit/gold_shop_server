@@ -1,8 +1,8 @@
 import { OpenAPIHono } from "@hono/zod-openapi";
 import { AppBindings } from "./types";
-import { pinoLogger } from "hono-pino";
 import { defaultHook } from "stoker/openapi";
 import { notFound, onError } from "stoker/middlewares";
+import { pinoLogger } from "@/middlewares/pino-logger";
 
 export function createRouter() {
   return new OpenAPIHono<AppBindings>({
