@@ -1,0 +1,23 @@
+{
+  "name": "gold-shop-server",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio",
+    "db:push": "drizzle-kit push",
+    "auth:generate": "bunx @better-auth/cli@latest generate --config ./src/lib/auth.ts --output ./src/db/schemas/new-auth-schema.ts --yes"
+  },
+  "dependencies": {
+    "better-auth": "^1.4.17",
+    "drizzle-orm": "^0.45.1",
+    "hono": "^4.11.4",
+    "pg": "^8.17.2"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/pg": "^8.16.0",
+    "drizzle-kit": "^0.31.8"
+  }
+}
+
