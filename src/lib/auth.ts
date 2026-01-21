@@ -1,6 +1,6 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { admin } from "better-auth/plugins";
+import { admin, openAPI } from "better-auth/plugins";
 import db from "../db";
 
 export const auth = betterAuth({
@@ -8,7 +8,8 @@ export const auth = betterAuth({
     provider: "pg",
   }),
   emailAndPassword: {
-    enabled: true, requireEmailVerification: false,
+    enabled: true,
+    requireEmailVerification: false,
   },
-  plugins: [admin()],
+  plugins: [admin(), openAPI()],
 });
