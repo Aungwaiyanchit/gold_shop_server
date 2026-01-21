@@ -1,5 +1,5 @@
 CREATE TABLE "branch" (
-	"id" text PRIMARY KEY NOT NULL,
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"name" text NOT NULL,
 	"address" text NOT NULL,
 	"created_by" text NOT NULL,
