@@ -15,6 +15,13 @@
       "when": 1769005327622,
       "tag": "0001_add-branch-table",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1769086667411,
+      "tag": "0002_add-inventory-tables",
+      "breakpoints": true
     }
   ]
 }
