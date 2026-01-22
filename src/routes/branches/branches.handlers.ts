@@ -5,7 +5,7 @@ import * as HttpStatusPhrases from "stoker/http-status-phrases";
 
 import db from "@/db";
 
-import { CreateRoute, ListRoute, PatchRoute } from "./branchs.routes";
+import { CreateRoute, ListRoute, PatchRoute } from "./branches.routes";
 import { branch } from "@/db/schema";
 import { ZOD_ERROR_CODES, ZOD_ERROR_MESSAGES } from "@/lib/constant";
 import { eq } from "drizzle-orm";

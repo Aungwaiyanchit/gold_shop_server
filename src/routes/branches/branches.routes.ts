@@ -5,7 +5,7 @@ import {
   insertBranchSchema,
   patchBranchSchema,
   selectBranchSchema,
-} from "./branchs.schema";
+} from "./branches.schema";
 import { notFoundSchema } from "@/lib/constant";
 import createErrorSchema from "stoker/openapi/schemas/create-error-schema";
 import { IdUUIDParamsSchema } from "stoker/openapi/schemas";
