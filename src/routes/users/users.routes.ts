@@ -2,6 +2,7 @@ import { createRoute, z } from "@hono/zod-openapi";
 import { insertUserSchema, selectUsersSchema } from "./users.schema";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 import { jsonContent, jsonContentRequired } from "stoker/openapi/helpers";
+import { paginationMetaSchema, paginationSchema } from "@/lib/constant";
 
 const tags = ["Users"];
 
@@ -9,8 +10,17 @@ export const list = createRoute({
   path: "/users",
   method: "get",
   tags,
+  request: {
+    query: paginationSchema,
+  },
   responses: {
-    [HttpStatusCodes.OK]: jsonContent(z.array(selectUsersSchema), "Success"),
+    [HttpStatusCodes.OK]: jsonContent(
+      z.object({
+        data: z.array(selectUsersSchema),
+        meta: paginationMetaSchema,
+      }),
+      "Success",
+    ),
   },
 });
 

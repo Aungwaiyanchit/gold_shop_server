@@ -8,11 +8,26 @@ import db from "@/db";
 import { CreateRoute, ListRoute, PatchRoute } from "./branches.routes";
 import { branch } from "@/db/schema";
 import { ZOD_ERROR_CODES, ZOD_ERROR_MESSAGES } from "@/lib/constant";
-import { eq } from "drizzle-orm";
+import { eq, ilike, or } from "drizzle-orm";
+import { createPaginatedResponse, getPaginationParams } from "@/lib/pagination-utils";
 
 export const list: AppRouteHandler<ListRoute> = async (c) => {
-  const users = await db.query.branch.findMany();
-  return c.json(users);
+  const { page, limit, q, offset } = getPaginationParams(c.req.valid("query"));
+
+  const where = q
+    ? or(ilike(branch.name, `%${q}%`), ilike(branch.address, `%${q}%`))
+    : undefined;
+
+  const branches = await db.query.branch.findMany({
+    limit,
+    offset,
+    where,
+    orderBy: (branch, { desc }) => [desc(branch.createdAt)],
+  });
+
+  const total = await db.$count(branch, where);
+
+  return c.json(createPaginatedResponse(branches, total, page, limit));
 };
 
 export const create: AppRouteHandler<CreateRoute> = async (c) => {

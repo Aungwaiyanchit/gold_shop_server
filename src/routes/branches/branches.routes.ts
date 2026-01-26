@@ -6,7 +6,7 @@ import {
   patchBranchSchema,
   selectBranchSchema,
 } from "./branches.schema";
-import { notFoundSchema } from "@/lib/constant";
+import { notFoundSchema, paginationMetaSchema, paginationSchema } from "@/lib/constant";
 import createErrorSchema from "stoker/openapi/schemas/create-error-schema";
 import { IdUUIDParamsSchema } from "stoker/openapi/schemas";
 
@@ -16,8 +16,17 @@ export const list = createRoute({
   path: "/branches",
   method: "get",
   tags,
+  request: {
+    query: paginationSchema,
+  },
   responses: {
-    [HttpStatusCodes.OK]: jsonContent(z.array(selectBranchSchema), "Success"),
+    [HttpStatusCodes.OK]: jsonContent(
+      z.object({
+        data: z.array(selectBranchSchema),
+        meta: paginationMetaSchema,
+      }),
+      "Success",
+    ),
   },
 });
 
