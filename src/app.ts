@@ -6,12 +6,13 @@ import auth from "@/routes/auth";
 import users from "@/routes/users/users.index";
 import branches from "@/routes/branches/branches.index";
 import inventories from "@/routes/inventory/inventory.index";
+import sales from "@/routes/sale/sale.index";
 
 const app = createApp();
 
 configureOpenAPI(app);
 
-const routes = [auth, users, branches, inventories] as const;
+const routes = [auth, users, branches, inventories, sales] as const;
 
 app.use("/api/*", async (c, next) => {
   if (c.req.path.startsWith("/api/auth")) {
